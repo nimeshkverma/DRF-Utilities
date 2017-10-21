@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'customer.apps.CustomerConfig',
     'common.apps.CommonConfig',
+    'social.apps.SocialConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -131,3 +132,30 @@ VERSIONED_BASE_URL = {
 }
 VERSIONS = ['v1']
 BASE_PORT = 'BASE_PORT'
+
+FACEBOOK = {
+    'data_url': 'https://graph.facebook.com/me?fields=id,cover,name,first_name,last_name,age_range,link,gender,locale,picture,timezone,updated_time,verified,email&access_token={platform_token}',
+}
+REQUIRES_FB_REVIEW = ['user_birthday', 'user_education_history', 'user_hometown',
+                      'user_location', 'user_managed_groups', 'user_relationships', 'user_work_history']
+
+GOOGLE = {
+    'data_url': 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token={platform_token}',
+}
+
+LINKEDIN = {
+    'auth_url': 'https://www.linkedin.com/oauth/v2/accessToken',
+    'auth_header': {
+        'v1': {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'grant_type': 'authorization_code',
+            'code': '{code}',
+            'redirect_uri': BASE_URL['v1'] + 'customer/linkedin_auth',
+            'client_id': 'client_id',
+            'client_secret': 'client_secret'
+        }
+    },
+    'data_url': 'https://api.linkedin.com/v1/people/~:(id,first-name,last-name,maiden-name,formatted-name,phonetic-first-name,phonetic-last-name,formatted-phonetic-name,headline,industry,current-share,num-connections,num-connections-capped,specialties,positions,picture-url,picture-urls::(original),site-standard-profile-request,api-standard-profile-request,public-profile-url,location:(name),summary)?format=json',
+    'data_auth': {
+        'Authorization': 'Bearer {platform_token}',
+    }

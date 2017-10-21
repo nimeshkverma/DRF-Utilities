@@ -9,6 +9,6 @@ LOGGER = logging.getLogger(__name__)
 
 class Config(APIView):
 
-    # @catch_exception(LOGGER)
+    @catch_exception(LOGGER)
     def get(self, request):
         return MetaDataResponse(config_service.Config().data, status=status.HTTP_200_OK)
