@@ -1,8 +1,10 @@
 certifi==2017.7.27.1
 chardet==3.0.4
 Django==1.9
+django-extensions==1.9.6
 djangorestframework==3.4.7
 idna==2.6
 requests==2.18.4
+six==1.11.0
 urllib3==1.22
 wheel==0.24.0

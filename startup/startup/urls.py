@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^', include('customer.urls')),
     url(r'^', include('common.urls')),
     url(r'^', include('social.urls')),
+    url(r'^', include('messenger.urls')),
 ]
